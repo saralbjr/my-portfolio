@@ -1,0 +1,345 @@
+Good. Since you want to use **Next.js** and you’re serious about becoming strong in fundamentals, I’ll give you a **proper Technical Stack Document** — structured like a real software project document.
+
+This is not just “tools list”.
+This explains **why each tool is chosen**, and how everything connects.
+
+---
+
+# 🧱 TECH STACK DOCUMENT
+
+## Product: Personal Portfolio Website
+
+## Framework: Next.js (App Router)
+
+## Version: 1.0
+
+---
+
+# 1️⃣ Architecture Overview
+
+## Architecture Type:
+
+* **Frontend-first application**
+* Static + partially dynamic
+* Server Components by default (Next.js App Router)
+
+## Rendering Strategy:
+
+* Static Site Generation (SSG) for pages
+* Optional Server Actions for contact form
+
+Why?
+
+* Portfolio doesn’t change often
+* Faster performance
+* Better SEO
+* Cheaper hosting
+
+---
+
+# 2️⃣ Core Framework
+
+## 🚀 Next.js
+
+* Version: Latest stable (14+)
+* Routing: App Router
+* File-based routing
+* Built-in SEO support
+* Image optimization
+* Server + Client components
+
+Why Next.js?
+
+* You already use it
+* Production-ready
+* SEO-friendly
+* Easy deployment on Vercel
+
+---
+
+# 3️⃣ Language
+
+## 🟦 TypeScript
+
+Why?
+
+* Strong typing
+* Better developer experience
+* Prevents bugs early
+* Makes your portfolio look professional
+
+---
+
+# 4️⃣ Styling System
+
+## 🎨 Tailwind CSS
+
+Why?
+
+* Fast UI development
+* Utility-first
+* Easy dark mode support
+* Clean design control
+
+Dark Mode Strategy:
+
+* class-based strategy
+* Controlled via ThemeToggle component
+* Uses localStorage to persist theme
+
+---
+
+# 5️⃣ UI Components Strategy
+
+Option A (Recommended):
+
+* Custom components (clean and minimal)
+
+Option B:
+
+* shadcn/ui (if you want polished components)
+
+For a portfolio:
+Keep it lightweight and custom.
+
+---
+
+# 6️⃣ Animations
+
+## ✨ Framer Motion (Optional but Recommended)
+
+Use for:
+
+* Fade-in sections
+* Hover effects
+* Smooth transitions
+
+Why?
+
+* Modern feel
+* Lightweight
+* Works perfectly with Next.js
+
+---
+
+# 7️⃣ Icons
+
+## 🖼️ Lucide React
+
+Why?
+
+* Clean modern icons
+* Tree-shakeable
+* TypeScript friendly
+
+---
+
+# 8️⃣ Fonts
+
+## 📝 next/font (Built-in)
+
+Use:
+
+* Inter or Poppins
+
+Why?
+
+* Automatic optimization
+* No external request
+* Better performance
+
+---
+
+# 9️⃣ Images
+
+Use:
+
+* Next.js Image Component
+
+Benefits:
+
+* Automatic resizing
+* Lazy loading
+* Optimization
+
+---
+
+# 🔟 State Management
+
+Minimal state required.
+
+Use:
+
+* React useState
+* Context API (only for theme if needed)
+
+No need for Redux / Zustand.
+
+---
+
+# 1️⃣1️⃣ Data Strategy
+
+Portfolio Type:
+
+* Static JSON file
+  OR
+* Local array inside project
+
+Example:
+
+```
+/data/projects.ts
+```
+
+Future Upgrade:
+
+* Use Prisma + PostgreSQL for CMS
+
+---
+
+# 1️⃣2️⃣ Contact Form Backend
+
+Option 1 (Simple):
+
+* Server Action (Next.js)
+* Nodemailer
+
+Option 2:
+
+* Resend API
+
+Security:
+
+* Environment variables
+* Rate limit logic
+* Input validation
+
+---
+
+# 1️⃣3️⃣ SEO Strategy
+
+Use:
+
+* Metadata API (Next.js)
+* OpenGraph tags
+* Structured data (optional)
+* Sitemap
+
+---
+
+# 1️⃣4️⃣ Performance Optimization
+
+* Static rendering
+* Image optimization
+* Code splitting
+* Lazy loading
+* Lighthouse score target: 90+
+
+---
+
+# 1️⃣5️⃣ Folder Structure
+
+```
+/app
+   layout.tsx
+   page.tsx
+   /about
+   /projects
+   /contact
+
+/components
+   Navbar.tsx
+   Hero.tsx
+   About.tsx
+   ProjectCard.tsx
+   Experience.tsx
+   ContactForm.tsx
+   Footer.tsx
+   ThemeToggle.tsx
+
+/data
+   projects.ts
+
+/lib
+   utils.ts
+
+/public
+   images/
+
+/styles
+   globals.css
+```
+
+---
+
+# 1️⃣6️⃣ Deployment
+
+## ☁️ Vercel
+
+Why?
+
+* Native Next.js support
+* Automatic CI/CD
+* Easy domain setup
+* Free tier
+
+---
+
+# 1️⃣7️⃣ Analytics
+
+Optional:
+
+* Vercel Analytics
+* Google Analytics
+
+Track:
+
+* Page visits
+* Contact clicks
+
+---
+
+# 1️⃣8️⃣ Security
+
+* Environment variables (.env)
+* Form validation (Zod recommended)
+* No exposed secrets
+* Spam prevention (Honeypot field)
+
+---
+
+# 1️⃣9️⃣ Dev Tools
+
+* ESLint
+* Prettier
+* Husky (optional)
+* GitHub for version control
+
+---
+
+# 2️⃣0️⃣ Future Upgrade Plan
+
+Phase 2:
+
+* Admin panel to manage projects
+* Blog system (MDX)
+* PostgreSQL + Prisma
+* Authentication (if needed)
+
+---
+
+# 📌 Final Stack Summary
+
+| Layer             | Technology          |
+| ----------------- | ------------------- |
+| Framework         | Next.js             |
+| Language          | TypeScript          |
+| Styling           | Tailwind CSS        |
+| Animations        | Framer Motion       |
+| Icons             | Lucide React        |
+| Font              | next/font           |
+| Email             | Nodemailer / Resend |
+| Deployment        | Vercel              |
+| Database (Future) | PostgreSQL + Prisma |
+
+

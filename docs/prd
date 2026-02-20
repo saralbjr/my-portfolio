@@ -1,0 +1,294 @@
+Good. Since you’re serious about coding and becoming a strong developer, let’s make this portfolio **strategic**, not just a “hello world” website.
+
+I’ll give you a **clear, structured PRD (Product Requirement Document)** that you can actually follow and build step-by-step.
+
+---
+
+# 📄 PRODUCT REQUIREMENTS DOCUMENT (PRD)
+
+## Product Name: Personal Developer Portfolio
+
+## Owner: Saral Bajracharya
+
+## Version: 1.0
+
+---
+
+# 1️⃣ Product Overview
+
+## 🎯 Purpose
+
+Build a modern personal portfolio website to:
+
+* Showcase your skills (MERN, Next.js, TypeScript, etc.)
+* Display your projects
+* Highlight your internship/job experience
+* Help you get internships, clients, or full-time jobs
+* Build your personal brand
+
+---
+
+# 2️⃣ Goals & Objectives
+
+## Primary Goals
+
+* Professional online presence
+* Showcase real projects with technical depth
+* Demonstrate frontend + backend knowledge
+* Show clean UI + dark mode support
+
+## Secondary Goals
+
+* Improve your React/Next.js fundamentals
+* Practice clean architecture
+* Make it production-ready
+* Deploy on Vercel
+
+---
+
+# 3️⃣ Target Audience
+
+* Tech recruiters
+* Internship supervisors
+* Potential freelance clients
+* Other developers
+
+---
+
+# 4️⃣ Features
+
+## 🏠 4.1 Home Page
+
+### Purpose:
+
+Quick introduction + strong first impression.
+
+### Sections:
+
+* Hero Section
+
+  * Name
+  * Title (Full Stack Developer | MERN | Next.js)
+  * Short tagline
+  * CTA buttons:
+
+    * View Projects
+    * Contact Me
+
+* Quick About Summary (2–3 lines)
+
+* Tech Stack Preview
+
+---
+
+## 👨‍💻 4.2 About Page
+
+### Sections:
+
+* Detailed introduction
+* Education
+* Experience
+* Skills breakdown:
+
+  * Frontend
+  * Backend
+  * Database
+  * DevOps
+  * Tools
+
+Optional:
+
+* Download CV button
+
+---
+
+## 🚀 4.3 Projects Page (Most Important)
+
+Each project should include:
+
+* Project Title
+* Description
+* Tech Stack
+* Features
+* Screenshots
+* Live Demo Link
+* GitHub Link
+* Technical Challenges
+* What You Learned
+
+Example Projects You Should Include:
+
+* Admin Notification System
+* Event Management System
+* Consultancy Website (Next.js + Prisma)
+
+---
+
+## 📝 4.4 Blog Page (Optional but Powerful)
+
+Write technical blogs:
+
+* How I built Admin Notification System
+* Dockerizing MERN app
+
+This makes you stand out.
+
+---
+
+## 📞 4.5 Contact Page
+
+* Contact form (Name, Email, Message)
+* Email integration (Resend / Nodemailer)
+* LinkedIn
+* GitHub
+
+---
+
+# 5️⃣ Functional Requirements
+
+## 5.1 UI/UX
+
+* Fully responsive
+* Dark mode toggle (you’re already interested in dark mode)
+* Clean minimal design
+* Smooth animations (Framer Motion optional)
+
+---
+
+## 5.2 Performance
+
+* Lighthouse score 90+
+* Image optimization
+* Lazy loading
+
+---
+
+## 5.3 SEO
+
+* Meta tags
+* Open Graph tags
+* Sitemap
+* Proper headings (h1, h2)
+
+---
+
+## 5.4 Security
+
+* Rate limit contact form
+* Validate inputs
+* Protect email API keys
+
+---
+
+# 6️⃣ Non-Functional Requirements
+
+* Fast load time (< 2 seconds)
+* Accessible (ARIA labels)
+* Clean folder structure
+* Scalable architecture
+
+---
+
+# 7️⃣ Tech Stack (Recommended for You)
+
+Since you already use:
+
+* ✅ Next.js (App Router)
+* ✅ TypeScript
+* ✅ Tailwind CSS
+* ✅ Prisma (if blog with DB)
+* ✅ PostgreSQL (optional)
+* ✅ Vercel (Deployment)
+
+Keep it simple at first.
+
+---
+
+# 8️⃣ Folder Structure Example (Next.js)
+
+```
+/app
+   /page.tsx
+   /about
+   /projects
+   /contact
+/components
+   Navbar.tsx
+   Footer.tsx
+   ProjectCard.tsx
+   ThemeToggle.tsx
+/lib
+   utils.ts
+/public
+   images/
+```
+
+---
+
+# 9️⃣ MVP (Minimum Viable Product)
+
+If you want to build fast:
+
+Phase 1:
+
+* Home
+* About
+* Projects
+* Contact (basic form)
+
+Phase 2:
+
+* Blog
+* Animations
+* CMS (Prisma backend)
+* Analytics
+
+---
+
+# 🔟 Future Enhancements
+
+* Admin panel to add projects
+* Blog CMS
+* Dashboard analytics
+* Multi-language support
+* Case-study style project pages
+
+---
+
+# 11️⃣ Success Metrics
+
+* Recruiters contact you
+* Portfolio looks clean + professional
+* You understand every line of code
+* Lighthouse > 90
+* Mobile optimized
+
+---
+
+# 💡 Design Direction Ideas
+
+* Background: dark (#111111)
+* Text: soft white (#e3e4e5)
+* Accent color: subtle purple or cyan
+* Smooth fade animations
+
+---
+
+# ⚠️ Important Strategy Advice
+
+Don’t make it flashy.
+Make it:
+
+* Clean
+* Professional
+* Technical
+* Real
+
+Recruiters care about:
+
+* Problem solving
+* Architecture
+* Real projects
+* Clean code
+
+
