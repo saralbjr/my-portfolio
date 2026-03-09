@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import type { Project } from "@/data/projects";
@@ -9,20 +11,38 @@ interface ProjectCardProps {
   index: number;
 }
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
+export default function ProjectCard({ project }: ProjectCardProps) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      variants={{
+        hidden: { opacity: 0, y: 40, scale: 0.95 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { duration: 0.5, ease: "easeOut" },
+        },
+      }}
       className="glass-card overflow-hidden group hover:border-accent/30 transition-all duration-300"
     >
-      {/* Project Image Placeholder */}
+      {/* Project Image */}
       <div className="relative h-48 bg-gradient-to-br from-accent/10 via-purple-500/5 to-background-secondary overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity">
-          <div className="text-6xl font-bold gradient-text">{project.title.charAt(0)}</div>
-        </div>
+        {!imgError ? (
+          <Image
+            src={project.image}
+            alt={`Screenshot of ${project.title}`}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity">
+            <div className="text-6xl font-bold gradient-text">{project.title.charAt(0)}</div>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-transparent" />
       </div>
 

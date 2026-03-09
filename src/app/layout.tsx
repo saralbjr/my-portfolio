@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const inter = Inter({
-  variable: "--font-inter",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -26,8 +29,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Saral Bajracharya" }],
   openGraph: {
     title: "Saral Bajracharya | Full Stack Developer",
-    description:
-      "Full Stack Developer specializing in MERN stack, Next.js, and TypeScript.",
+    description: "Full Stack Developer specializing in MERN stack, Next.js, and TypeScript.",
     type: "website",
     locale: "en_US",
   },
@@ -40,10 +42,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${poppins.variable} antialiased`}>
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

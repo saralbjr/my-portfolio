@@ -9,17 +9,22 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    id: "cloudfactory",
-    title: "Image Annotation Specialist",
-    company: "CloudFactory",
-    dateRange: "May 2025 – Present",
+    id: "full-stack-intern",
+    title: "Full Stack Developer Intern",
+    company: "Infotraid Technology",
+    dateRange: "Jan 2024 – Present",
     description:
-      "Working on annotating images and videos for machine learning training datasets, building tagging systems and quality assurance processes.",
+      "Developing scalable full-stack web applications and RESTful APIs using modern technologies.",
     achievements: [
-      "Annotated 10,000+ images for ML training datasets",
-      "Built internal tagging and classification system",
-      "Improved annotation accuracy through quality checks",
-      "Collaborated with global distributed teams",
+      "RESTful APIs with Next.js, Express.js, Prisma ORM, PostgreSQL",
+      "Express.js backend: Controller, Repository, Routes, Validator",
+      "Prisma database schemas, relational modeling",
+      "Dynamic table matrix for data input/display",
+      "Next.js frontend: React, React Query, Tailwind CSS",
+      "Real-time admin notification system",
+      "Component-based, API-first architecture",
+      "State management with React Query",
+      "Responsive, visually appealing UI with Tailwind",
     ],
   },
 ];

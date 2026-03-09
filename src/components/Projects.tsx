@@ -26,11 +26,20 @@ export default function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.15 } },
+          }}
+        >
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

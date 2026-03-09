@@ -30,28 +30,29 @@ export const projects: Project[] = [
     learnings:
       "Gained deep understanding of WebSocket protocols and pub/sub patterns for real-time systems.",
     image: "/images/projects/admin-notification.png",
-    githubUrl: "https://github.com/saral",
+    githubUrl: "https://github.com/saralbjr",
   },
   {
-    id: "event-management",
-    title: "Event Management System",
+    id: "data-analysis-website",
+    title: "Data Analysis Website",
     description:
-      "Full-stack event management platform with RSVP tracking, event scheduling, and attendee management.",
-    techStack: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+      "A specialized platform for data input and visualization, featuring a complex dynamic table matrix for efficient data management and analysis.",
+    techStack: ["Next.js", "React Query", "Tailwind CSS", "Express.js", "PostgreSQL"],
     features: [
-      "Create, edit, and delete events",
-      "RSVP system with email confirmations",
-      "Calendar view for event scheduling",
-      "Attendee management dashboard",
-      "Search and filter events",
+      "Dynamic table matrix for flexible data input",
+      "Real-time data visualization and display",
+      "Automated data validation and processing",
+      "RESTful API integration with React Query",
+      "Responsive UI for deep data editing",
     ],
     challenges:
-      "Designing an intuitive calendar interface and handling timezone differences for events.",
+      "Developing a performant and reactive table matrix that handles large-scale dynamic inputs without compromising UI speed.",
     learnings:
-      "Learned to build complex CRUD applications with proper state management and data validation.",
-    image: "/images/projects/event-management.png",
-    githubUrl: "https://github.com/saral",
+      "Deepened expertise in React Query for complex state synchronization and optimized grid-based UI architectures.",
+    image: "/images/projects/data-analysis.png",
+    githubUrl: "https://github.com/saralbjr",
   },
+
   {
     id: "consultancy-website",
     title: "Consultancy Website",
@@ -67,8 +68,7 @@ export const projects: Project[] = [
     ],
     challenges:
       "Integrating Prisma ORM with Next.js server components and managing database migrations.",
-    learnings:
-      "Mastered server-side rendering patterns and database integration with modern ORMs.",
+    learnings: "Mastered server-side rendering patterns and database integration with modern ORMs.",
     image: "/images/projects/consultancy-website.png",
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/saral",
