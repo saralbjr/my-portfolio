@@ -12,7 +12,7 @@ export const experiences: Experience[] = [
     id: "full-stack-intern",
     title: "Full Stack Developer Intern",
     company: "Infotraid Technology",
-    dateRange: "Jan 2024 – Present",
+    dateRange: "Feb 2025 – August 2025",
     description:
       "Developing scalable full-stack web applications and RESTful APIs using modern technologies.",
     achievements: [

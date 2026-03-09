@@ -80,27 +80,37 @@ export async function submitContactForm(
     };
   }
 
-  // 4. Send email (placeholder — replace with Nodemailer or Resend)
-  // To integrate a real email provider:
-  //   import { Resend } from "resend";
-  //   const resend = new Resend(process.env.RESEND_API_KEY);
-  //   await resend.emails.send({ ... });
+  // 4. Send email using FormSubmit AJAX API
   try {
-    // Simulate processing
-    console.log("📧 Contact form submission:", {
-      name: result.data.name,
-      email: result.data.email,
-      message: result.data.message,
+    const response = await fetch("https://formsubmit.co/ajax/saralbjr@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        _subject: `New Portfolio Message from ${result.data.name}`,
+        name: result.data.name,
+        email: result.data.email,
+        message: result.data.message,
+        _template: "box", // Beautiful HTML email template
+      }),
     });
+
+    if (!response.ok) {
+      throw new Error("Failed to send email");
+    }
 
     return {
       success: true,
-      message: "Message sent successfully! I'll get back to you soon.",
+      message:
+        "Message sent! (Note: You may need to activate your FormSubmit link in your email first)",
     };
-  } catch {
+  } catch (error) {
+    console.error("Email sending error:", error);
     return {
       success: false,
-      message: "Something went wrong. Please try again later.",
+      message: "Something went wrong sending the email. Please try again later.",
     };
   }
 }

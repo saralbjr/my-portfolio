@@ -84,19 +84,15 @@
 ### 3. Hero Section
 
 - [x] Create `Hero.tsx` component
-- [x] **Left side:**
+- [x] **Centered Content:**
   - [x] Large bold name with gradient text
-  - [x] Title line ("Full Stack Developer | MERN | Next.js")
+  - [x] Title line (Animated with **Typewriter Effect**)
   - [x] Short tagline about skills
-  - [x] "Open to opportunities" status badge
   - [x] Two CTA buttons: "View Projects" · "Contact Me"
     - [x] Style: rounded corners, accent bg, white text, shadow
     - [x] Hover effect: scale up slightly
-- [x] **Right side:**
-  - [x] Code snippet visual with floating animation
-  - [x] Decorative gradient orb rings
 - [x] Add **fade-in animation** using Framer Motion
-- [x] Make responsive: stack vertically on mobile, center align
+- [x] Make responsive: centered layout for all screen sizes
 - [x] Scroll-down indicator arrow at bottom
 
 ---
@@ -105,7 +101,7 @@
 
 - [x] Create `About.tsx` component
 - [x] Add section heading: "About Me" with gradient accent
-- [x] Add **avatar placeholder** with gradient border
+- [x] Add **profile photo** with glassmorphism & glowing hover effects (Next.js Image)
 - [x] Write short paragraph introduction
 - [x] Add **skills breakdown** grid:
   - [x] Frontend: JavaScript, TypeScript, React, Next.js, HTML5, CSS3, Tailwind CSS
@@ -156,6 +152,7 @@
   - [x] CloudFactory – Image Annotation (May 2025 – Present)
 - [x] Style as vertical timeline with alternating cards
 - [x] Timeline dot indicator with accent glow
+- [x] Add **"Show More/Less"** toggle for long achievement lists
 - [x] Add scroll-triggered animation (Framer Motion)
 
 ---
@@ -174,8 +171,7 @@
 #### 7.2 Contact Form Backend
 
 - [x] Create Server Action for form submission
-- [ ] Integrate email sending (Nodemailer or Resend API) — _placeholder in place_
-- [ ] Store API keys in `.env` (environment variables) — _needed when email provider is integrated_
+- [x] Integrate email sending (**FormSubmit.co** AJAX API)
 - [x] Add input validation (Zod)
 - [x] Add rate limiting to prevent spam
 - [x] Add Honeypot field for spam prevention
