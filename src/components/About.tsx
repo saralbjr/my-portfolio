@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { User, Code, Database, Wrench, Download } from "lucide-react";
 import { skillCategories } from "@/data/skills";
 
@@ -50,9 +51,23 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            {/* Avatar placeholder */}
-            <div className="w-40 h-40 mx-auto lg:mx-0 mb-8 rounded-full bg-gradient-to-br from-accent/30 to-purple-500/30 flex items-center justify-center border-2 border-accent/20">
-              <User size={64} className="text-accent/60" />
+            {/* Profile Image */}
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto lg:mx-0 mb-8 group">
+              {/* Animated glow behind image */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent to-purple-500 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-accent/20 group-hover:border-accent/60 transition-colors duration-500 bg-background-secondary shadow-2xl z-10">
+                <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 mix-blend-overlay" />
+                <Image
+                  src="/images/profile.jpg"
+                  alt="Saral Bajracharya"
+                  fill
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 224px, 224px"
+                  priority
+                  quality={90}
+                />
+              </div>
             </div>
 
             <p className="text-foreground-muted leading-relaxed mb-6">

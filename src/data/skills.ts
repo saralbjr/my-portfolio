@@ -27,6 +27,6 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     category: "DevOps & Tools",
-    skills: ["Git", "GitHub", "Docker", "Vercel", "VS Code", "Postman"],
+    skills: ["Git", "GitHub", "Docker", "Vercel", "Postman"],
   },
 ];

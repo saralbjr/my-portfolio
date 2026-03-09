@@ -25,7 +25,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="mb-4 tracking-tight text-5xl md:text-6xl lg:text-7xl font-bold">
-            Hi, I&apos;m <span className="gradient-text">Saral</span>
+            Hey 👋 I&apos;m <span className="gradient-text">Saral</span>
           </h1>
 
           <div className="text-xl md:text-2xl text-foreground-muted font-medium mb-3 min-h-[40px]">

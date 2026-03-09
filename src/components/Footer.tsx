@@ -13,8 +13,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <p className="text-sm text-foreground-muted flex items-center gap-1">
-            © {new Date().getFullYear()} Saral Bajracharya. Made with{" "}
-            <Heart size={14} className="text-red-400 fill-red-400" /> and Next.js
+            © {new Date().getFullYear()} Saral Bajracharya.
           </p>
 
           {/* Social Links */}
