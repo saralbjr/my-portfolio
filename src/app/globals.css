@@ -72,6 +72,19 @@ body {
     color 0.3s ease;
 }
 
+/* Hide native cursor on precise pointers - custom cursor handles interactions */
+body,
+body * {
+  cursor: none !important;
+}
+
+/* Preserve native text cursor where it matters */
+input,
+textarea,
+[contenteditable="true"] {
+  cursor: text !important;
+}
+
 /* ===== Section Styles ===== */
 section {
   padding: var(--section-padding) 24px;
