@@ -2,8 +2,8 @@
 
 /* ===== Design Tokens — Dark (default) ===== */
 :root {
-  --background: #0b1121;
-  --background-secondary: #111827;
+  --background: #060b18;
+  --background-secondary: #0c1425;
   --foreground: #f8fafc;
   --foreground-muted: #94a3b8;
   --accent: #0ea5e9;
@@ -236,4 +236,29 @@ h3 {
 /* ===== Smooth Section Transitions ===== */
 section {
   transition: opacity 0.3s ease;
+}
+
+/* ===== Cosmic Background Animations ===== */
+@keyframes nebula-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -20px) scale(1.05); }
+  66%      { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+@keyframes nebula-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-25px, 20px) scale(1.08); }
+  66%      { transform: translate(15px, -25px) scale(0.93); }
+}
+
+@keyframes nebula-drift-3 {
+  0%, 100% { transform: translate(-50%, 0) scale(1); }
+  50%      { transform: translate(-50%, -30px) scale(1.1); }
+}
+
+@keyframes shooting-star {
+  0%       { opacity: 0; transform: rotate(-35deg) translateX(0); }
+  5%       { opacity: 0.9; }
+  15%      { opacity: 0; transform: rotate(-35deg) translateX(300px); }
+  100%     { opacity: 0; }
 }

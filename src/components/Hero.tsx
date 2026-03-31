@@ -11,11 +11,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-grid">
-      {/* Ambient glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
-
+    <section id="home" className="relative min-h-screen flex items-center">
       <div className="section-inner w-full flex flex-col items-center justify-center pt-[var(--nav-height)]">
         {/* Centered Text Content */}
         <motion.div
