@@ -205,7 +205,7 @@ export default function CustomCursor() {
   return (
     <div
       ref={cursorWrapperRef}
-      className="fixed top-0 left-0 z-[10000] pointer-events-none"
+      className="fixed top-0 left-0 z-[999999] pointer-events-none"
       style={{ willChange: "transform", transition: "opacity 0.2s ease" }}
     >
       {/* 1. Breathing Ambient Glow */}

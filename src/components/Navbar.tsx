@@ -82,7 +82,7 @@ export default function Navbar() {
             handleClick("#home");
           }}
         >
-          <span className="gradient-text">Saral</span>
+          <span className="gradient-text">saralbjr</span>
         </a>
 
         {/* Desktop Links */}

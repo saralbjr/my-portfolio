@@ -16,26 +16,28 @@ const contactSchema = z.object({
   honeypot: z.string().max(0, "Bot detected"), // Honeypot — should always be empty
 });
 
-// ===== Simple in-memory rate limiter =====
+// ===== Improved in-memory rate limiter =====
+// Note: In production, consider using Upstash Redis for serverless deployments
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-const RATE_LIMIT_MAX = 3; // max 3 requests per window
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour window (per email)
+const RATE_LIMIT_MAX = 5; // max 5 messages per hour from same email
 
-function checkRateLimit(identifier: string): boolean {
+function checkRateLimit(identifier: string): { success: boolean; timeRemaining?: number } {
   const now = Date.now();
   const entry = rateLimitMap.get(identifier);
 
   if (!entry || now > entry.resetTime) {
     rateLimitMap.set(identifier, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
-    return true;
+    return { success: true };
   }
 
   if (entry.count >= RATE_LIMIT_MAX) {
-    return false;
+    const timeRemaining = Math.ceil((entry.resetTime - now) / (60 * 1000));
+    return { success: false, timeRemaining };
   }
 
   entry.count++;
-  return true;
+  return { success: true };
 }
 
 // ===== Server Action =====
@@ -56,9 +58,9 @@ export async function submitContactForm(
     honeypot: (formData.get("honeypot") as string) || "",
   };
 
-  // 1. Honeypot check
+  // 1. Honeypot check (Bot protection)
   if (raw.honeypot.length > 0) {
-    return { success: false, message: "Submission blocked." };
+    return { success: false, message: "Spam detected. Submission blocked." };
   }
 
   // 2. Zod validation
@@ -71,46 +73,70 @@ export async function submitContactForm(
     };
   }
 
-  // 3. Rate limiting
-  const identifier = result.data.email;
-  if (!checkRateLimit(identifier)) {
+  // 3. User-specific Rate Limiting (Abuse prevention)
+  const identifier = result.data.email.toLowerCase();
+  const limit = checkRateLimit(identifier);
+  if (!limit.success) {
     return {
       success: false,
-      message: "Too many requests. Please try again in a minute.",
+      message: `Too many submissions. Please wait ${limit.timeRemaining} minutes before trying again.`,
     };
   }
 
-  // 4. Send email using FormSubmit AJAX API
+  // 4. Send email using Resend (Professional Free Email Platform)
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  
+  if (!apiKey) {
+    console.error("Missing RESEND_API_KEY");
+    return {
+      success: false,
+      message: "Server configuration error. Please try again later.",
+    };
+  }
+
   try {
-    const response = await fetch("https://formsubmit.co/ajax/saralbjr@gmail.com", {
+    const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
       body: JSON.stringify({
-        _subject: `New Portfolio Message from ${result.data.name}`,
-        name: result.data.name,
-        email: result.data.email,
-        message: result.data.message,
-        _template: "box", // Beautiful HTML email template
+        from: "Portfolio <onboarding@resend.dev>",
+        to: "saralbjr@gmail.com",
+        reply_to: result.data.email,
+        subject: `New Message from Portfolio: ${result.data.name}`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #111;">
+            <h2 style="color: #3b82f6;">New Portfolio Message</h2>
+            <p><strong>From:</strong> ${result.data.name} (${result.data.email})</p>
+            <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin-top: 10px;">
+              <p style="white-space: pre-wrap; font-size: 16px;">${result.data.message}</p>
+            </div>
+            <p style="font-size: 12px; color: #666; margin-top: 30px; border-top: 1px solid #eee; padding-top: 10px;">
+              Sent from your portfolio website.
+            </p>
+          </div>
+        `,
       }),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to send email");
+      const errorData = await response.json();
+      console.error("Resend API Error:", errorData);
+      throw new Error("Resend failed");
     }
 
     return {
       success: true,
-      message:
-        "Message sent! (Note: You may need to activate your FormSubmit link in your email first)",
+      message: "Message received! I'll get back to you as soon as possible.",
     };
+    
   } catch (error) {
-    console.error("Email sending error:", error);
+    console.error("Contact form error:", error);
     return {
       success: false,
-      message: "Something went wrong sending the email. Please try again later.",
+      message: "Oops! Technical difficulty sending your message. Please try my social links below.",
     };
   }
 }

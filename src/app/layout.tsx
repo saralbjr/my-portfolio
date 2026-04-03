@@ -7,6 +7,7 @@ import CustomCursor from "@/components/CustomCursor";
 import CosmicBackground from "@/components/CosmicBackground";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -16,7 +17,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Saral Bajracharya | Full Stack Developer",
+  title: "Saral Bajracharya | Portfolio",
   description:
     "Personal portfolio of Saral Bajracharya — Full Stack Developer specializing in MERN stack, Next.js, and TypeScript. Building clean, performant, and scalable web applications.",
   keywords: [
@@ -52,6 +53,7 @@ export default function RootLayout({
         <Footer />
         <Analytics />
         <SpeedInsights />
+        <Script src="/ai-chat-widget.js" strategy="lazyOnload" />
       </body>
     </html>
   );

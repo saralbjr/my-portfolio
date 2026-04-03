@@ -76,14 +76,11 @@ export default function About() {
               writing efficient code, and creating seamless user experiences that solve real
               problems.
             </p>
-            <p className="text-foreground-muted leading-relaxed">
-              When I&apos;m not coding, I&apos;m exploring new technologies, contributing to
-              open-source projects, and constantly leveling up my development skills.
-            </p>
 
             <a
               href="/resume.pdf"
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all duration-300 hover:scale-[1.03] text-sm"
             >
               <Download size={16} />

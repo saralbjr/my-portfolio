@@ -13,64 +13,44 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "admin-notification",
-    title: "Admin Notification System",
+    id: "music-web-app",
+    title: "Music Streaming Platform",
     description:
-      "A real-time notification system for admin dashboards with role-based alerts, WebSocket integration, and notification management.",
-    techStack: ["React", "Node.js", "Express", "MongoDB", "Socket.io"],
+      "A feature-rich music streaming application with real-time playback controls, mood-based recommendations, and an advanced admin dashboard for content management.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "MongoDB", "Vercel"],
     features: [
-      "Real-time push notifications via WebSockets",
-      "Role-based notification routing",
-      "Read/unread status tracking",
-      "Notification history and filtering",
-      "Email fallback for critical alerts",
+      "Real-time music playback with seek, volume, and shuffle controls",
+      "Mood-based song recommendations using rule-based classification",
+      "Admin dashboard with system analytics and user/song management",
+      "Fast text search using KMP (Knuth-Morris-Pratt) algorithm",
+      "Merge Sort for efficient song filtering and ordering",
     ],
     challenges:
-      "Handling concurrent WebSocket connections at scale and ensuring message delivery reliability.",
+      "Implementing a persistent audio player that maintains playback state across page transitions and optimizing the KMP search for large song datasets.",
     learnings:
-      "Gained deep understanding of WebSocket protocols and pub/sub patterns for real-time systems.",
-    image: "/images/projects/admin-notification.png",
-    githubUrl: "https://github.com/saralbjr",
+      "Mastered client-side audio management, advanced sorting/searching algorithms, and state persistence in Next.js.",
+    image: "/images/projects/music-app.png",
+    liveUrl: "https://music-web-app-opal.vercel.app",
+    githubUrl: "https://github.com/saralbjr/music-web-app",
   },
   {
-    id: "data-analysis-website",
-    title: "Data Analysis Website",
+    id: "ecommerce-template",
+    title: "Next.js eCommerce Platform",
     description:
-      "A specialized platform for data input and visualization, featuring a complex dynamic table matrix for efficient data management and analysis.",
-    techStack: ["Next.js", "React Query", "Tailwind CSS", "Express.js", "PostgreSQL"],
+      "A scalable, modern eCommerce template featuring a fully functional shopping cart, product filtering, and a clean UI powered by shadcn/ui.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "Prisma", "PostgreSQL"],
     features: [
-      "Dynamic table matrix for flexible data input",
-      "Real-time data visualization and display",
-      "Automated data validation and processing",
-      "RESTful API integration with React Query",
-      "Responsive UI for deep data editing",
+      "Full-featured shopping cart and persistence",
+      "Advanced product filtering by category and attributes",
+      "Seamless checkout flow and order management",
+      "Middleware-based authentication and protected routes",
+      "Responsive, high-performance UI components with shadcn/ui",
     ],
     challenges:
-      "Developing a performant and reactive table matrix that handles large-scale dynamic inputs without compromising UI speed.",
+      "Managing complex global state for the shopping cart and ensuring smooth, bug-free checkout flows with server-side validation.",
     learnings:
-      "Deepened expertise in React Query for complex state synchronization and optimized grid-based UI architectures.",
-    image: "/images/projects/data-analysis.png",
-    githubUrl: "https://github.com/saralbjr",
-  },
-
-  {
-    id: "consultancy-website",
-    title: "Consultancy Website",
-    description:
-      "Modern business consultancy website built with Next.js and Prisma, featuring dynamic content management and contact forms.",
-    techStack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
-    features: [
-      "Dynamic service pages with CMS",
-      "Contact form with email integration",
-      "SEO optimized pages",
-      "Responsive design across all devices",
-      "Admin panel for content management",
-    ],
-    challenges:
-      "Integrating Prisma ORM with Next.js server components and managing database migrations.",
-    learnings: "Mastered server-side rendering patterns and database integration with modern ORMs.",
-    image: "/images/projects/consultancy-website.png",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/saral",
+      "Gained expertise in shadcn/ui component patterns, Next.js middleware, and optimizing eCommerce data fetching with Prisma.",
+    image: "/images/projects/ecommerce.png",
+    githubUrl: "https://github.com/saralbjr/ecommerce-template",
   },
 ];
