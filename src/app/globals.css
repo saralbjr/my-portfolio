@@ -44,6 +44,8 @@
   --color-accent-glow: var(--accent-glow);
   --color-card-bg: var(--card-bg);
   --color-card-border: var(--card-border);
+  --color-gradient-start: var(--gradient-start);
+  --color-gradient-end: var(--gradient-end);
   --font-sans: var(--font-poppins);
 }
 

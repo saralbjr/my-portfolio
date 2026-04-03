@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import CosmicBackground from "@/components/CosmicBackground";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
@@ -20,6 +21,9 @@ export const metadata: Metadata = {
   title: "Saral Bajracharya | Portfolio",
   description:
     "Personal portfolio of Saral Bajracharya — Full Stack Developer specializing in MERN stack, Next.js, and TypeScript. Building clean, performant, and scalable web applications.",
+  icons: {
+    icon: "/favicon.png",
+  },
   keywords: [
     "Saral Bajracharya",
     "Full Stack Developer",
@@ -46,6 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${poppins.variable} antialiased`}>
+        <ScrollProgressBar />
         <CustomCursor />
         <CosmicBackground />
         <Navbar />
