@@ -9,7 +9,8 @@
       display: flex; flex-direction: column; align-items: flex-end; pointer-events: none;
     }
     
-    .ai-chat-widget * { pointer-events: all; }
+    .ai-chat-button-area { pointer-events: all; }
+    .ai-chat-window.ai-chat-visible { pointer-events: all; }
 
     /* The Button Area */
     .ai-chat-button-area {
@@ -56,7 +57,7 @@
       box-shadow: 0 0 25px var(--accent-glow), 0 10px 30px rgba(0,0,0,0.3);
       display: flex; align-items: center; justify-content: center;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: none !important; outline: none; padding: 0; position: relative;
+      outline: none; padding: 0; position: relative;
     }
     
     .ai-chat-toggle-btn::before {
@@ -102,12 +103,12 @@
     .ai-chat-msg.bot { align-self: flex-start; background: var(--background-secondary); color: var(--foreground); border: 1px solid var(--card-border); border-bottom-left-radius: 4px; }
 
     .ai-chat-chips-container { padding: 0 28px 24px; display: flex; flex-wrap: wrap; gap: 10px; }
-    .ai-chat-chip { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--card-border); color: var(--foreground); padding: 10px 18px; border-radius: 24px; font-size: 0.85rem; cursor: none !important; transition: all 0.3s ease; }
+    .ai-chat-chip { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--card-border); color: var(--foreground); padding: 10px 18px; border-radius: 24px; font-size: 0.85rem; transition: all 0.3s ease; }
     .ai-chat-chip:hover { border-color: var(--accent); background: var(--accent-glow); transform: translateY(-2px); }
 
     .ai-chat-input-area { padding: 24px 28px; border-top: 1px solid var(--card-border); display: flex; gap: 14px; background: rgba(0, 0, 0, 0.04); }
     .ai-chat-input { flex: 1; background: var(--background-secondary); border: 1px solid var(--card-border); color: var(--foreground); padding: 14px 20px; border-radius: 16px; outline: none; font-family: inherit; font-size: 0.95rem; }
-    .ai-chat-send { background: var(--accent); color: #fff; border: none; border-radius: 16px; width: 52px; min-width: 52px; display: flex; align-items: center; justify-content: center; cursor: none !important; }
+    .ai-chat-send { background: var(--accent); color: #fff; border: none; border-radius: 16px; width: 52px; min-width: 52px; display: flex; align-items: center; justify-content: center; }
     
     .ai-typing-indicator { display: none; align-self: flex-start; background: var(--background-secondary); padding: 14px 20px; border-radius: 20px; gap: 6px; margin-bottom: 10px; }
     .ai-typing-indicator.active { display: flex; }
