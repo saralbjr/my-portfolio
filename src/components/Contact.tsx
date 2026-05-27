@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Github, Linkedin, CheckCircle, AlertCircle } from "lucide-react";
+import { Send, Mail, Linkedin, CheckCircle, AlertCircle } from "lucide-react";
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
 
 const initialState: ContactFormState = {
@@ -28,8 +28,7 @@ export default function Contact() {
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-foreground-muted max-w-xl mx-auto">
-            Let&apos;s build something amazing together. Feel free to reach out for collaborations,
-            opportunities, or just a chat.
+            Have a question about my projects, want to discuss digital trends, or looking to collaborate? Drop me a line!
           </p>
           <div className="w-20 h-1 bg-gradient-to-r from-accent to-purple-500 mx-auto rounded-full mt-4" />
         </motion.div>
@@ -103,7 +102,7 @@ export default function Contact() {
                 required
                 rows={5}
                 className="w-full px-4 py-3 rounded-xl bg-white/5 border border-card-border text-foreground placeholder:text-foreground-muted/40 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all resize-none"
-                placeholder="Tell me about your project..."
+                placeholder="Write your message here..."
               />
               {state.errors?.message && (
                 <p className="text-red-400 text-xs mt-1">{state.errors.message[0]}</p>
@@ -162,8 +161,7 @@ export default function Contact() {
             <div>
               <h3 className="text-xl font-bold mb-2">Let&apos;s Connect</h3>
               <p className="text-foreground-muted text-sm leading-relaxed">
-                I&apos;m currently open to new opportunities and interesting projects. Whether you
-                have a question or just want to say hi, I&apos;ll try my best to get back to you!
+                I am eager to learn, contribute, and collaborate in digital environments. Whether you want to discuss visual storytelling layouts, SEO baseline configurations, or post scheduling practices, feel free to reach out.
               </p>
             </div>
 
@@ -178,21 +176,6 @@ export default function Contact() {
                 <div>
                   <div className="text-sm font-medium">Email</div>
                   <div className="text-foreground-muted text-sm">saralbjr@gmail.com</div>
-                </div>
-              </a>
-
-              <a
-                href="https://github.com/saralbjr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 glass-card hover:border-accent/30 transition-all duration-300 group"
-              >
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent/20 transition-colors">
-                  <Github size={20} />
-                </div>
-                <div>
-                  <div className="text-sm font-medium">GitHub</div>
-                  <div className="text-foreground-muted text-sm">github.com/saralbjr</div>
                 </div>
               </a>
 

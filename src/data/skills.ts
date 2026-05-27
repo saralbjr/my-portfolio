@@ -5,28 +5,62 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
   {
-    category: "Frontend",
+    category: "Digital Marketing",
     skills: [
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "React Query",
-      "HTML5",
-      "CSS3",
-      "Tailwind CSS",
+      "SEO Basics",
+      "Content Marketing",
+      "Online Branding",
+      "Audience Engagement",
+      "Digital Promotion Strategies",
     ],
   },
   {
-    category: "Backend",
-    skills: ["Node.js", "Express.js", "REST APIs", "Server Actions"],
+    category: "Social Media",
+    skills: [
+      "Facebook Page Management",
+      "Instagram Content Creation",
+      "Post Scheduling",
+      "Audience Interaction",
+      "Message Handling",
+    ],
   },
   {
-    category: "Database",
-    skills: ["MongoDB", "PostgreSQL", "Prisma ORM"],
+    category: "Content Creation",
+    skills: [
+      "Caption Writing",
+      "Content Planning",
+      "Visual Storytelling",
+      "Promotional Copywriting",
+    ],
   },
   {
-    category: "DevOps & Tools",
-    skills: ["Git", "GitHub", "Docker", "Vercel", "Postman"],
+    category: "Technical Skills",
+    skills: [
+      "Basic Website Management",
+      "Google Analytics (Foundational)",
+      "MS Office",
+      "Google Workspace",
+    ],
+  },
+  {
+    category: "Communication",
+    skills: [
+      "English Communication",
+      "Nepali Communication",
+      "Customer Interaction",
+      "Interpersonal Skills",
+    ],
+  },
+  {
+    category: "Soft Skills",
+    skills: [
+      "Creative Thinker",
+      "Positive Attitude",
+      "Fast Learner",
+      "Organized",
+      "Team-oriented",
+      "Calm Under Pressure",
+      "Punctual",
+    ],
   },
 ];

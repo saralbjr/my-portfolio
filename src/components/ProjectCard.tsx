@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Target, CheckCircle2 } from "lucide-react";
 import type { Project } from "@/data/projects";
 
 interface ProjectCardProps {
@@ -11,13 +10,11 @@ interface ProjectCardProps {
   index: number;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
-  const [imgError, setImgError] = useState(false);
-
+export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <motion.article
       variants={{
-        hidden: { opacity: 0, y: 40, scale: 0.95 },
+        hidden: { opacity: 0, y: 30, scale: 0.95 },
         visible: {
           opacity: 1,
           y: 0,
@@ -25,75 +22,76 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           transition: { duration: 0.5, ease: "easeOut" },
         },
       }}
-      className="glass-card overflow-hidden group hover:border-accent/30 transition-all duration-300"
+      className="glass-card p-6 flex flex-col justify-between hover:border-accent/30 hover:bg-white/[0.01] transition-all duration-300 group"
     >
-      {/* Project Image */}
-      <div className="relative h-48 bg-gradient-to-br from-accent/10 via-purple-500/5 to-background-secondary overflow-hidden">
-        {!imgError ? (
-          <Image
-            src={project.image}
-            alt={`Screenshot of ${project.title}`}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity">
-            <div className="text-6xl font-bold gradient-text">{project.title.charAt(0)}</div>
+      <div>
+        {/* Niche Badge */}
+        <div className="flex items-center justify-between mb-4">
+          <span className="px-2.5 py-1 rounded-md bg-accent/10 border border-accent/20 text-accent font-bold text-[10px] uppercase tracking-wider">
+            {project.niche}
+          </span>
+          <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-accent/60 group-hover:scale-110 transition-transform">
+            <Target size={16} />
           </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-transparent" />
-      </div>
+        </div>
 
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="text-lg font-bold mb-2 group-hover:text-accent transition-colors">
+        {/* Title */}
+        <h3 className="text-lg font-bold mb-3 group-hover:text-accent transition-colors">
           {project.title}
         </h3>
 
-        <p className="text-foreground-muted text-sm leading-relaxed mb-4 line-clamp-3">
+        {/* Description */}
+        <p className="text-foreground-muted text-[13px] leading-relaxed mb-6">
           {project.description}
         </p>
 
-        {/* Tech Stack Tags */}
-        <div className="flex flex-wrap gap-2 mb-5">
-          {project.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="px-2.5 py-1 text-xs font-medium rounded-md bg-accent/10 text-accent/80 border border-accent/10"
-            >
-              {tech}
-            </span>
-          ))}
+        {/* Learnings / Topics Tag List */}
+        <div className="mb-5 border-t border-accent/5 pt-4">
+          <span className="text-[10px] font-black uppercase text-accent/80 tracking-widest block mb-2">
+            Focus Areas
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {project.metrics.map((metric) => (
+              <span
+                key={metric}
+                className="px-2 py-0.5 text-xs font-semibold rounded-md bg-white/5 text-foreground-muted border border-card-border"
+              >
+                {metric}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-3">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-white/5 hover:bg-white/10 border border-card-border hover:border-accent/30 text-foreground-muted hover:text-foreground transition-all duration-200"
-            >
-              <Github size={15} />
-              Code
-            </a>
-          )}
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-accent hover:bg-accent-hover text-white shadow-lg shadow-accent/10 transition-all duration-200"
-            >
-              <ExternalLink size={15} />
-              Live Demo
-            </a>
-          )}
+        {/* Practical Strategies Applied */}
+        <div>
+          <span className="text-[10px] font-black uppercase text-accent/80 tracking-widest block mb-2">
+            Practice Operations
+          </span>
+          <ul className="space-y-1.5">
+            {project.strategies.map((strategy) => (
+              <li key={strategy} className="flex items-center gap-2 text-xs text-foreground-muted">
+                <CheckCircle2 size={13} className="text-accent/60 flex-shrink-0" />
+                <span>{strategy}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+
+      {/* Optional Link Block */}
+      {project.liveUrl && (
+        <div className="pt-6 border-t border-accent/5 mt-6">
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold rounded-lg bg-accent hover:bg-accent-hover text-white shadow-md shadow-accent/15 transition-all duration-200"
+          >
+            <ExternalLink size={13} />
+            Visit Live Site
+          </a>
+        </div>
+      )}
     </motion.article>
   );
 }

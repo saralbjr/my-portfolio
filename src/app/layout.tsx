@@ -20,23 +20,25 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Saral Bajracharya | Portfolio",
   description:
-    "Personal portfolio of Saral Bajracharya — Full Stack Developer specializing in MERN stack, Next.js, and TypeScript. Building clean, performant, and scalable web applications.",
+    "Professional portfolio of Saral Bajracharya — SEO Specialist & Digital Marketing Strategist. Helping brands grow search traffic, improve keyword rankings, and scale conversions.",
   icons: {
     icon: "/favicon.png",
   },
   keywords: [
     "Saral Bajracharya",
-    "Full Stack Developer",
-    "MERN",
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Portfolio",
+    "SEO Larner",
+    "Digital Marketer",
+    "Search Engine Optimization",
+    "Technical SEO Audits",
+    "Local SEO Consultant",
+    "Digital Marketing Strategy",
+    "Growth Consultant Portfolio",
   ],
   authors: [{ name: "Saral Bajracharya" }],
   openGraph: {
-    title: "Saral Bajracharya | Full Stack Developer",
-    description: "Full Stack Developer specializing in MERN stack, Next.js, and TypeScript.",
+    title: "Saral Bajracharya | SEO & Digital Marketing Specialist",
+    description:
+      "SEO & Digital Marketing Learner. Scaling brand visibility, organic search metrics, and user engagement.",
     type: "website",
     locale: "en_US",
   },

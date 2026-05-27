@@ -1,7 +1,6 @@
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 const socialLinks = [
-  { icon: <Github size={18} />, href: "https://github.com/saralbjr", label: "GitHub" },
   { icon: <Linkedin size={18} />, href: "https://linkedin.com/in/saralbjr", label: "LinkedIn" },
   { icon: <Mail size={18} />, href: "mailto:saralbjr@gmail.com", label: "Email" },
 ];
@@ -13,7 +12,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <p className="text-sm text-foreground-muted flex items-center gap-1">
-            © {new Date().getFullYear()} Saral Bajracharya.
+            © {new Date().getFullYear()} Saral Bajracharya. SEO & Digital Marketing.
           </p>
 
           {/* Social Links */}
@@ -27,7 +26,7 @@ export default function Footer() {
                 aria-label={link.label}
                 className="w-9 h-9 rounded-lg flex items-center justify-center text-foreground-muted bg-white/5 hover:bg-accent/10 hover:text-accent border border-card-border hover:border-accent/30 transition-all duration-200"
               >
-                {link.icon}
+                {socialLinks.find((l) => l.label === link.label)?.icon}
               </a>
             ))}
           </div>
