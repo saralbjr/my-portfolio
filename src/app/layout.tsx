@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Saral Bajracharya" }],
   openGraph: {
-    title: "Saral Bajracharya | SEO & Digital Marketing Specialist",
+    title: "Saral Bajracharya | SEO & Digital Marketing Learner",
     description:
       "SEO & Digital Marketing Learner. Scaling brand visibility, organic search metrics, and user engagement.",
     type: "website",
