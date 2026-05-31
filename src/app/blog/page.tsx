@@ -1,14 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Search, Calendar, Clock, ArrowLeft, ArrowUpRight } from "lucide-react";
+import { Search, Calendar, Clock, ArrowLeft, ArrowUpRight, FileText } from "lucide-react";
 import Link from "next/link";
-import blogPosts from "@/data/blogPosts.json";
+import { getBlogPosts } from "@/app/actions/blog";
+import { BlogPost } from "@/lib/blogUtils";
 
 export default function BlogListPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch posts dynamically on mount
+  useEffect(() => {
+    async function loadPosts() {
+      try {
+        const posts = await getBlogPosts();
+        setBlogPosts(posts);
+      } catch (err) {
+        console.error("Failed to load blog posts", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadPosts();
+  }, []);
 
   // Get unique categories
   const categories = ["All", ...Array.from(new Set(blogPosts.map((post) => post.category)))];
@@ -65,121 +83,147 @@ export default function BlogListPage() {
           </motion.p>
         </div>
 
-        {/* Search & Filter Row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="flex flex-col md:flex-row gap-4 justify-between items-center mb-12 glass-card p-4 rounded-2xl border border-card-border/50 bg-card-bg/40 backdrop-blur-md"
-        >
-          {/* Search bar */}
-          <div className="relative w-full md:w-80">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground-muted/60" size={18} />
-            <input
-              type="text"
-              placeholder="Search articles..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-black/20 dark:bg-white/[0.02] border border-card-border/60 hover:border-accent/40 focus:border-accent rounded-xl py-2 pl-10 pr-4 text-sm font-semibold outline-none transition-all placeholder:text-foreground-muted/50"
-            />
+        {/* Loading State */}
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="w-12 h-12 rounded-full border-2 border-accent/25 border-t-accent animate-spin mb-4" />
+            <p className="text-foreground-muted text-sm font-semibold">Loading articles...</p>
           </div>
-
-          {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2 w-full md:w-auto justify-start md:justify-end">
-            {categories.map((category) => {
-              const isSelected = selectedCategory === category;
-              return (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all relative cursor-pointer outline-none ${
-                    isSelected
-                      ? "text-white bg-accent/90"
-                      : "text-foreground-muted hover:text-foreground hover:bg-white/5 border border-card-border/30"
-                  }`}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        {/* Articles Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {filteredPosts.length > 0 ? (
-            filteredPosts.map((post, index) => (
-              <motion.article
-                key={post.id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="glass-card p-6 flex flex-col justify-between hover:border-accent/30 hover:bg-white/[0.01] transition-all duration-300 relative group min-h-[300px]"
-              >
-                <div>
-                  {/* Meta details */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-2.5 py-0.5 text-[10px] font-black uppercase text-accent bg-accent/15 border border-accent/20 rounded-md">
-                      {post.category}
-                    </span>
-                    <div className="flex items-center gap-3 text-[11px] text-foreground-muted">
-                      <span className="flex items-center gap-1">
-                        <Calendar size={12} />
-                        {post.date}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock size={12} />
-                        {post.readTime}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h2 className="text-lg font-black mb-3 leading-snug group-hover:text-accent transition-colors">
-                    {post.title}
-                  </h2>
-
-                  {/* Excerpt */}
-                  <p className="text-foreground-muted text-[13px] leading-relaxed mb-6">
-                    {post.excerpt}
-                  </p>
-                </div>
-
-                {/* View Article Link */}
-                <div className="pt-4 border-t border-card-border/50 mt-auto">
-                  <Link
-                    href={post.link}
-                    className="flex justify-between items-center group/btn cursor-pointer"
-                  >
-                    <span className="text-[12px] font-bold text-foreground-muted group-hover:text-foreground transition-colors">
-                      Read Article
-                    </span>
-                    <div className="w-9 h-9 rounded-full bg-white/5 group-hover:bg-accent flex items-center justify-center text-foreground-muted group-hover:text-white transition-all duration-300 group-hover:rotate-45">
-                      <ArrowUpRight size={15} />
-                    </div>
-                  </Link>
-                </div>
-              </motion.article>
-            ))
-          ) : (
-            <div className="col-span-full text-center py-16">
-              <p className="text-foreground-muted text-sm mb-4">No articles found matching your query.</p>
-              <button
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedCategory("All");
-                }}
-                className="px-4 py-2 bg-accent/20 border border-accent/30 hover:bg-accent/30 rounded-xl text-xs font-bold text-accent transition-colors cursor-pointer"
-              >
-                Reset Filters
-              </button>
+        ) : blogPosts.length === 0 ? (
+          /* Empty State */
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-center py-20"
+          >
+            <div className="w-16 h-16 rounded-2xl bg-white/[0.02] border border-card-border/60 flex items-center justify-center mx-auto mb-6 text-foreground-muted">
+              <FileText size={28} />
             </div>
-          )}
-        </motion.div>
+            <h3 className="text-lg font-black tracking-tight mb-2">No Articles Yet</h3>
+            <p className="text-foreground-muted text-sm font-semibold leading-relaxed max-w-md mx-auto">
+              New content is being crafted. Check back soon for fresh insights on SEO, analytics, and digital growth strategies.
+            </p>
+          </motion.div>
+        ) : (
+          <>
+            {/* Search & Filter Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="flex flex-col md:flex-row gap-4 justify-between items-center mb-12 glass-card p-4 rounded-2xl border border-card-border/50 bg-card-bg/40 backdrop-blur-md"
+            >
+              {/* Search bar */}
+              <div className="relative w-full md:w-80">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground-muted/60" size={18} />
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-black/20 dark:bg-white/[0.02] border border-card-border/60 hover:border-accent/40 focus:border-accent rounded-xl py-2 pl-10 pr-4 text-sm font-semibold outline-none transition-all placeholder:text-foreground-muted/50"
+                />
+              </div>
+
+              {/* Category Tabs */}
+              <div className="flex flex-wrap gap-2 w-full md:w-auto justify-start md:justify-end">
+                {categories.map((category) => {
+                  const isSelected = selectedCategory === category;
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-4 py-2 rounded-xl text-xs font-bold transition-all relative cursor-pointer outline-none ${
+                        isSelected
+                          ? "text-white bg-accent/90"
+                          : "text-foreground-muted hover:text-foreground hover:bg-white/5 border border-card-border/30"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+            {/* Articles Grid */}
+            <motion.div
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {filteredPosts.length > 0 ? (
+                filteredPosts.map((post, index) => (
+                  <motion.article
+                    key={post.id}
+                    layout
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    className="glass-card p-6 flex flex-col justify-between hover:border-accent/30 hover:bg-white/[0.01] transition-all duration-300 relative group min-h-[300px]"
+                  >
+                    <div>
+                      {/* Meta details */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="px-2.5 py-0.5 text-[10px] font-black uppercase text-accent bg-accent/15 border border-accent/20 rounded-md">
+                          {post.category}
+                        </span>
+                        <div className="flex items-center gap-3 text-[11px] text-foreground-muted">
+                          <span className="flex items-center gap-1">
+                            <Calendar size={12} />
+                            {post.date}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock size={12} />
+                            {post.readTime}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <h2 className="text-lg font-black mb-3 leading-snug group-hover:text-accent transition-colors">
+                        {post.title}
+                      </h2>
+
+                      {/* Excerpt */}
+                      <p className="text-foreground-muted text-[13px] leading-relaxed mb-6">
+                        {post.excerpt}
+                      </p>
+                    </div>
+
+                    {/* View Article Link */}
+                    <div className="pt-4 border-t border-card-border/50 mt-auto">
+                      <Link
+                        href={post.link}
+                        className="flex justify-between items-center group/btn cursor-pointer"
+                      >
+                        <span className="text-[12px] font-bold text-foreground-muted group-hover:text-foreground transition-colors">
+                          Read Article
+                        </span>
+                        <div className="w-9 h-9 rounded-full bg-white/5 group-hover:bg-accent flex items-center justify-center text-foreground-muted group-hover:text-white transition-all duration-300 group-hover:rotate-45">
+                          <ArrowUpRight size={15} />
+                        </div>
+                      </Link>
+                    </div>
+                  </motion.article>
+                ))
+              ) : (
+                <div className="col-span-full text-center py-16">
+                  <p className="text-foreground-muted text-sm mb-4">No articles found matching your query.</p>
+                  <button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedCategory("All");
+                    }}
+                    className="px-4 py-2 bg-accent/20 border border-accent/30 hover:bg-accent/30 rounded-xl text-xs font-bold text-accent transition-colors cursor-pointer"
+                  >
+                    Reset Filters
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </>
+        )}
       </div>
     </div>
   );

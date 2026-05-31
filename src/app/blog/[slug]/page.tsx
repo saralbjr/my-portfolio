@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowLeft, Share2, Check, Copy } from "lucide-react";
 import Link from "next/link";
-import blogPosts from "@/data/blogPosts.json";
+import { getBlogPosts } from "@/app/actions/blog";
+import { BlogPost } from "@/lib/blogUtils";
 
 export default function BlogPostDetailsPage() {
   const { slug } = useParams();
@@ -13,16 +14,25 @@ export default function BlogPostDetailsPage() {
   const [copied, setCopied] = useState(false);
   const [copiedCodeIndex, setCopiedCodeIndex] = useState<number | null>(null);
 
-  const [post, setPost] = useState<any>(null);
+  const [post, setPost] = useState<BlogPost | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Safely find the post when slug hydrates on the client side
   useEffect(() => {
-    if (slug) {
-      const foundPost = blogPosts.find((item) => item.slug === slug);
-      setPost(foundPost || null);
-      setIsLoaded(true);
+    async function loadPost() {
+      if (slug) {
+        try {
+          const allPosts = await getBlogPosts();
+          const foundPost = allPosts.find((item) => item.slug === slug);
+          setPost(foundPost || null);
+        } catch (err) {
+          console.error("Failed to load blog post", err);
+        } finally {
+          setIsLoaded(true);
+        }
+      }
     }
+    loadPost();
   }, [slug]);
 
   // Calculate reading progress scrollbar
@@ -119,18 +129,18 @@ export default function BlogPostDetailsPage() {
             {/* Category Pill */}
             <div className="mb-4">
               <span className="px-3 py-1 text-xs font-black uppercase text-accent bg-accent/15 border border-accent/25 rounded-md">
-                {post.category}
+                {post!.category}
               </span>
             </div>
 
             {/* Main Title */}
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-black mb-6 leading-tight">
-              {post.title}
+              {post!.title}
             </h1>
 
             {/* Content block renderer */}
             <div className="prose prose-invert max-w-none text-foreground-muted">
-              {post.content.map((block: any, index: number) => {
+              {post!.content.map((block: any, index: number) => {
                 if (block.type === "p") {
                   return (
                     <p key={index} className="text-sm sm:text-base leading-relaxed mb-6 text-foreground-muted/90 font-medium">
@@ -213,10 +223,10 @@ export default function BlogPostDetailsPage() {
                       className="border-l-4 border-accent bg-accent/5 py-5 px-6 rounded-r-2xl my-8 font-medium italic relative overflow-hidden border border-card-border/30"
                     >
                       <div className="absolute -top-3 right-2 text-accent/5 font-serif text-8xl pointer-events-none select-none leading-none">
-                        “
+                        &ldquo;
                       </div>
                       <p className="text-foreground text-xs sm:text-sm leading-relaxed mb-2 relative z-10">
-                        "{block.text}"
+                        &ldquo;{block.text}&rdquo;
                       </p>
                       {"author" in block && block.author && (
                         <span className="text-[11px] font-extrabold text-foreground-muted">
@@ -251,7 +261,7 @@ export default function BlogPostDetailsPage() {
                     <Calendar size={16} className="text-accent" />
                     <div className="flex flex-col">
                       <span className="text-[10px] text-foreground-muted leading-tight font-bold">PUBLISHED</span>
-                      <span className="text-foreground/90">{post.date}</span>
+                      <span className="text-foreground/90">{post!.date}</span>
                     </div>
                   </li>
 
@@ -259,7 +269,7 @@ export default function BlogPostDetailsPage() {
                     <Clock size={16} className="text-accent" />
                     <div className="flex flex-col">
                       <span className="text-[10px] text-foreground-muted leading-tight font-bold">READ TIME</span>
-                      <span className="text-foreground/90">{post.readTime}</span>
+                      <span className="text-foreground/90">{post!.readTime}</span>
                     </div>
                   </li>
                 </ul>
@@ -288,13 +298,13 @@ export default function BlogPostDetailsPage() {
                 <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-2xl pointer-events-none" />
                 <h4 className="font-bold text-sm mb-2 text-foreground">Need SEO Optimization?</h4>
                 <p className="text-foreground-muted text-[12px] leading-relaxed mb-4">
-                  Let's audit your data tracking architecture and scale organic channel search traffic.
+                  Let&apos;s audit your data tracking architecture and scale organic channel search traffic.
                 </p>
                 <Link
                   href="/#contact"
                   className="inline-block py-2 px-4 bg-white/[0.04] dark:bg-white/[0.02] border border-card-border/70 hover:border-accent hover:text-accent rounded-xl text-[11px] font-bold text-foreground transition-all cursor-pointer outline-none"
                 >
-                  Let's Connect
+                  Let&apos;s Connect
                 </Link>
               </div>
             </div>
