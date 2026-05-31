@@ -20,7 +20,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Saral Bajracharya | Portfolio",
   description:
-    "Professional portfolio of Saral Bajracharya — SEO Specialist & Digital Marketing Strategist. Helping brands grow search traffic, improve keyword rankings, and scale conversions.",
+    "Professional portfolio of Saral Bajracharya — SEO & Digital Marketing Learner. Helping brands grow search traffic, improve keyword rankings, and scale conversions.",
   icons: {
     icon: "/favicon.png",
   },

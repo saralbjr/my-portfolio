@@ -1,0 +1,206 @@
+[
+  {
+    "id": "1",
+    "slug": "ga4-custom-tracking-metrics",
+    "title": "GA4 Analytics: Critical Custom Tracking Metrics",
+    "excerpt": "Why standard setups fail to capture key lead capture submissions and how to properly configure custom tag triggers for attribution reporting.",
+    "date": "May 15, 2026",
+    "readTime": "5 min read",
+    "category": "Web Analytics",
+    "link": "/blog/ga4-custom-tracking-metrics",
+    "content": [
+      {
+        "type": "p",
+        "text": "Google Analytics 4 (GA4) is a powerful tool, but its out-of-the-box configuration is rarely sufficient for serious marketing attribution. Many businesses rely solely on Enhanced Measurement, assuming it captures everything. In reality, it frequently misses complex form submissions, dynamic single-page application transitions, and key conversion actions."
+      },
+      {
+        "type": "h2",
+        "text": "The Limitations of Default GA4 Tracking"
+      },
+      {
+        "type": "p",
+        "text": "By default, GA4's enhanced measurement tracks standard events like page_view, scroll, click, file_download, and video_start. While this is helpful, form_submit tracking is notoriously unreliable. It often triggers on any form element interaction (such as newsletter signups) rather than a successful lead submission, or it fails completely on Ajax-based or iframe-hosted forms."
+      },
+      {
+        "type": "h2",
+        "text": "Configuring Custom Triggers in Google Tag Manager"
+      },
+      {
+        "type": "p",
+        "text": "To capture high-value lead submissions, we must configure custom event triggers within Google Tag Manager (GTM). The most reliable method is utilizing the Custom Event trigger paired with a custom dataLayer push from your website's submission handler."
+      },
+      {
+        "type": "code",
+        "code": "window.dataLayer = window.dataLayer || [];\nwindow.dataLayer.push({\n  'event': 'lead_form_submitted',\n  'form_type': 'contact_us',\n  'lead_value': 25.00\n});",
+        "language": "javascript"
+      },
+      {
+        "type": "p",
+        "text": "This GTM code fires when a user successfully passes client-side validation and completes the submission. In GTM, you capture the 'lead_form_submitted' event and map it to a GA4 Event Tag."
+      },
+      {
+        "type": "h2",
+        "text": "Essential Custom Metrics to Configure"
+      },
+      {
+        "type": "p",
+        "text": "Once GTM is transmitting the events, you need to register these parameters inside the GA4 admin interface under Custom Definitions. Here are three critical custom metrics and dimensions you should register:"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "form_id (Custom Dimension) — Tracks exactly which form on the page was completed.",
+          "lead_value (Custom Metric) — Assigns monetary weight to different forms to calculate actual ROI.",
+          "user_type (Custom Dimension) — Distinguishes between first-time visitors and returning clients."
+        ]
+      },
+      {
+        "type": "quote",
+        "text": "Without proper custom definitions, your conversion data is just noise. High-fidelity tracking is the foundation of clear marketing attribution.",
+        "author": "Saral Bajracharya, SEO Specialist"
+      },
+      {
+        "type": "h2",
+        "text": "Verifying Conversions with GA4 DebugView"
+      },
+      {
+        "type": "p",
+        "text": "Never assume your tracking works without testing. Use the GA4 DebugView tool inside GTM's Preview mode. When you submit a test form, check the timeline to ensure the 'lead_form_submitted' event registers with all associated custom dimensions and values. Once verified, mark the event as a Key Event (formerly Conversion) to feed the data directly into your acquisition reports."
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "slug": "onpage-seo-checklist",
+    "title": "On-Page SEO Checklist: Dominating Search Rankings",
+    "excerpt": "A systematic review checklist covering semantic keyword placements, schema injection, heading structures, and media performance scores.",
+    "date": "April 28, 2026",
+    "readTime": "7 min read",
+    "category": "Search Strategy",
+    "link": "/blog/onpage-seo-checklist",
+    "content": [
+      {
+        "type": "p",
+        "text": "On-page SEO forms the core foundation of organic search visibility. Even with thousands of high-quality backlinks, search engines will struggle to rank your pages if your on-page architecture is confusing, slow, or semantically deficient."
+      },
+      {
+        "type": "h2",
+        "text": "1. Master Semantic HTML & Hierarchy"
+      },
+      {
+        "type": "p",
+        "text": "Search engine crawlers rely on structural signals to understand your page content. You must maintain strict structural integrity by using a single H1 tag for the main title, followed by logical H2, H3, and H4 tags for sub-sections. Never use heading elements for styling purposes; keep headings reserved strictly for content relationships."
+      },
+      {
+        "type": "h2",
+        "text": "2. Keyword Placement & Density Optimization"
+      },
+      {
+        "type": "p",
+        "text": "Gone are the days of keyword stuffing. Modern algorithms prioritize natural language processing (NLP) and Latent Semantic Indexing (LSI). To rank for your primary query, optimize the following areas naturally:"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Title Tag & Meta Description — Place your primary keyword close to the start.",
+          "First 100 Words — Introduce the core concept early in the introduction.",
+          "URL Structure — Keep it short, clean, and keyword-inclusive.",
+          "Image Alt Attributes — Describe the image semantically using variations of your keyword."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "3. Structured Data & JSON-LD Schema Injection"
+      },
+      {
+        "type": "p",
+        "text": "Schema markup acts as a direct translator for search engine crawlers, allowing you to explicitly describe your content. By adding Article, LocalBusiness, or FAQ schema, you increase the likelihood of securing rich snippets in search results."
+      },
+      {
+        "type": "code",
+        "code": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"headline\": \"On-Page SEO Checklist: Dominating Search Rankings\",\n  \"image\": \"https://example.com/images/seo-checklist.jpg\",\n  \"author\": {\n    \"@type\": \"Person\",\n    \"name\": \"Saral Bajracharya\"\n  },\n  \"datePublished\": \"2026-04-28\"\n}",
+        "language": "json"
+      },
+      {
+        "type": "h2",
+        "text": "4. Performance, Core Web Vitals, and Mobile Usability"
+      },
+      {
+        "type": "p",
+        "text": "User experience is a direct ranking factor. Ensure your page speeds score above 90 on Google PageSpeed Insights. Focus on optimizing Core Web Vitals, especially Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS) by utilizing responsive, modern image formats (like WebP/AVIF), setting explicit dimension styles, and deferring non-essential scripts."
+      },
+      {
+        "type": "quote",
+        "text": "The best place to hide a dead body is page two of Google. Make your content fast, semantic, and incredibly valuable to stay on page one.",
+        "author": "Saral Bajracharya"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "slug": "local-maps-ranking",
+    "title": "Google Local 3-Pack: Dominate Geo-Targeted Search",
+    "excerpt": "How to clean directory inconsistencies, build localized FAQ pages, and automate review campaigns to secure prime placement in Google Maps.",
+    "date": "March 12, 2026",
+    "readTime": "6 min read",
+    "category": "Local SEO",
+    "link": "/blog/local-maps-ranking",
+    "content": [
+      {
+        "type": "p",
+        "text": "For brick-and-mortar businesses or local service providers, organic visibility on standard web search is only half the battle. The true source of high-intent local leads is the Google Local 3-Pack — the block of three map-pinned businesses appearing at the top of local search queries."
+      },
+      {
+        "type": "h2",
+        "text": "Step 1: Optimize Your Google Business Profile (GBP)"
+      },
+      {
+        "type": "p",
+        "text": "Your Google Business Profile (formerly GMB) is the absolute epicenter of your local SEO campaign. To optimize your profile fully, ensure that you:"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Select the exact Primary Category (e.g., 'Marketing Agency' rather than a generic 'Consultant').",
+          "Match your Nap (Name, Address, Phone Number) exactly with your legal documents and website contact page.",
+          "Write a detailed description rich in local neighborhood terms and core services.",
+          "Regularly publish GBP Updates (posts, promotions, and new high-quality photos)."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Step 2: Clean Directory Citations and Inconsistencies"
+      },
+      {
+        "type": "p",
+        "text": "Google crawls the entire web to verify the legitimacy of your business details. If Yelp lists your suite as 'Suite 200' while your website says 'Unit B' and Apple Maps uses a legacy phone number, Google's trust score drops, harming your ranking. Use audit platforms to sweep and align your citations across aggregators."
+      },
+      {
+        "type": "h2",
+        "text": "Step 3: Build Local Relevance with Content and FAQ Pages"
+      },
+      {
+        "type": "p",
+        "text": "To stand out as the local authority, design specialized service landing pages targeting specific neighborhoods or sub-regions. Implement custom FAQ blocks addressing local needs, using schema markup so Google can pull answers directly into search engine results pages."
+      },
+      {
+        "type": "code",
+        "code": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [{\n    \"@type\": \"Question\",\n    \"name\": \"Do you offer on-site consultations in downtown areas?\",\n    \"acceptedAnswer\": {\n      \"@type\": \"Answer\",\n      \"text\": \"Yes! We provide localized technical audits and consulting services across all central neighborhoods.\"\n    }\n  }]\n}",
+        "language": "json"
+      },
+      {
+        "type": "h2",
+        "text": "Step 4: Automate Review Collection Campaigns"
+      },
+      {
+        "type": "p",
+        "text": "Review velocity, recency, and overall rating are massive ranking signals. Set up automated email or SMS feedback loops immediately following client checkouts or project completion. Always respond to reviews — both positive and negative — using keyword-inclusive sentences where appropriate to capture secondary search intent."
+      },
+      {
+        "type": "quote",
+        "text": "A robust local search strategy isn't about gaming the algorithm; it's about building a digital footprint that accurately mirrors your physical prominence.",
+        "author": "Saral Bajracharya, Local SEO Expert"
+      }
+    ]
+  }
+]
