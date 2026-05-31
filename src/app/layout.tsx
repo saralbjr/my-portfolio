@@ -61,6 +61,21 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <Script src="/ai-chat-widget.js" strategy="lazyOnload" />
+
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-V6XLKBC09D"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-V6XLKBC09D');
+          `}
+        </Script>
       </body>
     </html>
   );
