@@ -20,7 +20,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Saral Bajracharya | Portfolio",
   description:
-    "Professional portfolio of Saral Bajracharya — SEO Specialist & Digital Marketing Strategist. Helping brands grow search traffic, improve keyword rankings, and scale conversions.",
+    "Professional portfolio of Saral Bajracharya — SEO & Digital Marketing Learner. Helping brands grow search traffic, improve keyword rankings, and scale conversions.",
   icons: {
     icon: "/favicon.png",
   },
@@ -61,6 +61,21 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <Script src="/ai-chat-widget.js" strategy="lazyOnload" />
+
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-V6XLKBC09D"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-V6XLKBC09D');
+          `}
+        </Script>
       </body>
     </html>
   );
